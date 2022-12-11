@@ -18,12 +18,17 @@ public class RadioButtons extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_radio_buttons);
 
-        mRadioGroup = findViewById(R.id.radioGroup);
+        mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
-        int selectedId = mRadioGroup.getCheckedRadioButtonId();
-        RadioButton selectedRadioButtons = findViewById(selectedId);
-        String value = selectedRadioButtons.getText().toString();
-
-        Toast.makeText(this, value, Toast.LENGTH_SHORT).show();
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int selectedId = mRadioGroup.getCheckedRadioButtonId();
+                RadioButton selectedRadioButtons = findViewById(selectedId);
+                String value = selectedRadioButtons.getText().toString();
+                Toast.makeText(getApplicationContext(), value, Toast.LENGTH_SHORT).show();
+            }
+        });
+        //
     }
 }
